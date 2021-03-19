@@ -1,0 +1,15 @@
+.home__description {
+  display: flex;
+  flex-flow: row wrap;
+  height: 250px;
+  align-items: stretch; }
+
+.home__description__text--wrapper {
+  background-color: #faebd7; }
+
+.home__description__additional-text--wrapper {
+  background-color: #b996da; }
+
+.home__description__text--wrapper, .home__description__additional-text--wrapper {
+  max-width: 250px;
+  width: 100%; }

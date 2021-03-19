@@ -1,0 +1,21 @@
+.home__description {
+    display: flex;
+    flex-flow: row wrap;
+    height: 250px;
+    align-items: stretch;
+ 
+
+    &__text--wrapper {
+        background-color: #faebd7;
+
+    }
+
+    &__additional-text--wrapper {
+        background-color: #b996da;
+    }
+
+    &__text--wrapper, &__additional-text--wrapper {       
+        max-width: 250px;
+        width: 100%;
+    }
+}
