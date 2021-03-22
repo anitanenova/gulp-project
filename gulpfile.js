@@ -26,6 +26,14 @@ const sassLint = require('gulp-sass-lint');
           .pipe(gulp.dest('dist/css')))
   });
 
+  gulp.task('cssmin', function(){
+    return gulp.src('./dist/css/master.css')
+      .pipe(sourcemaps.init())
+      .pipe(cssnano())
+      .pipe(rename({ extname: '.min.css' }))
+      .pipe(sourcemaps.write('./'))
+      .pipe(gulp.dest('dist/css'))
+  });
 
   gulp.task('watch', function(){
     browserSync.init({
@@ -35,8 +43,9 @@ const sassLint = require('gulp-sass-lint');
   });
 
     gulp.watch('./src/sass/**/*.scss', gulp.series('sass')).on("change", browserSync.reload);
+    gulp.watch('./dist/css/master.css', gulp.series('cssmin')).on("change", browserSync.reload);
    
-   // gulp.watch('./index.html', browserSync.reload); 
+  
   
 });
 

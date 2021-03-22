@@ -1,20 +1,25 @@
+//generally this must be in another file and folder like settings-colors
+$primary-color: #b996da;
+$secondary-color: #faebd7;
+
+
 .home__description {
+    align-items: stretch;
     display: flex;
     flex-flow: row wrap;
-    height: 250px;
-    align-items: stretch;
- 
+    height: 250px; 
 
     &__text--wrapper {
-        background-color: #faebd7;
+        background-color: $secondary-color;
 
     }
 
     &__additional-text--wrapper {
-        background-color: #b996da;
+        background-color: $primary-color;
     }
 
-    &__text--wrapper, &__additional-text--wrapper {       
+    &__text--wrapper,
+    &__additional-text--wrapper {       
         max-width: 250px;
         width: 100%;
     }

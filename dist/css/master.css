@@ -1,8 +1,8 @@
 .home__description {
+  align-items: stretch;
   display: flex;
   flex-flow: row wrap;
-  height: 250px;
-  align-items: stretch; }
+  height: 250px; }
 
 .home__description__text--wrapper {
   background-color: #faebd7; }
