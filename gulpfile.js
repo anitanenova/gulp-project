@@ -9,6 +9,9 @@ const sourcemaps = require('gulp-sourcemaps'); // if we use plugins we have to u
 const cssnano = require('gulp-cssnano'); // minify css files
 const rename = require('gulp-rename');
 const sassLint = require('gulp-sass-lint'); 
+const uglifyJS = require('gulp-uglify');
+const babel = require('gulp-babel');
+const concat = require('gulp-concat'); // Concatenates files
 
 
   gulp.task('sass', function(){
@@ -35,6 +38,19 @@ const sassLint = require('gulp-sass-lint');
       .pipe(gulp.dest('dist/css'))
   });
 
+
+  gulp.task('scripts', function(){
+    gulp.src(['./src/scripts/vendor/sample-library.js', './src/scripts/vendor/sample-library2.js'])
+      .pipe(babel({presets: ['@babel/preset-env'] })) 
+      .pipe(uglifyJS())
+      .pipe(concat('scripts.js'))
+      .pipe(gulp.dest('./src/scripts'))
+      .pipe(concat('bundle.js'))
+      .pipe(rename({ extname: '.min.js' }))
+      .pipe(gulp.dest('dist/scripts'))
+  });
+
+
   gulp.task('watch', function(){
     browserSync.init({
       server: {
@@ -42,10 +58,12 @@ const sassLint = require('gulp-sass-lint');
       },
   });
 
-    gulp.watch('./src/sass/**/*.scss', gulp.series('sass')).on("change", browserSync.reload);
-    gulp.watch('./dist/css/master.css', gulp.series('cssmin')).on("change", browserSync.reload);
-   
+  gulp.watch('./src/sass/**/*.scss', gulp.series('sass')).on("change", browserSync.reload);
+  gulp.watch('./dist/css/master.css', gulp.series('cssmin')).on("change", browserSync.reload);
+  gulp.watch('./src/scripts/**/*.js', gulp.series('scripts')).on("change", browserSync.reload);
   
+
+
   
 });
 
